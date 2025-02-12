@@ -18,8 +18,10 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /path/to/your/project
+            cd fastapi-book-project
             git pull origin main
-            source /path/to/your/venv/bin/activate
+            python3 -m venv myenv
+            source myenv/bin/activate
             pip install -r requirements.txt
+            python3 -m uvicorn main:app
             systemctl restart fastapi
